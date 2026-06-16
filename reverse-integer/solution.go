@@ -17,25 +17,20 @@ func reverse(x int) int {
 		n = -n
 	}
 
-	for n >= 10 {
-		result += n % 10
-		if result < 0 {
-			overflow = true
-			break
-		}
-
+	for n != 0 {
 		if result > math.MaxInt32/10 {
 			overflow = true
 			break
 		}
 		result *= 10
 
-		n = n / 10
-	}
+		result += n % 10
+		if result < 0 {
+			overflow = true
+			break
+		}
 
-	result += n % 10
-	if result < 0 {
-		overflow = true
+		n = n / 10
 	}
 
 	if overflow {
